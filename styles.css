@@ -1,0 +1,39 @@
+
+:root{
+  --bg:#0f1113;
+  --card:#2f3942;
+  --accent:#9b111e;
+  --muted:#cfd6db;
+  --gold:#C9AB6B;
+  --radius:12px;
+  --maxw:1100px;
+  --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:var(--sans);background:var(--bg);color:var(--muted);-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.container{max-width:var(--maxw);margin:28px auto;padding:0 18px}
+.topnav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.site-title{font-weight:700;font-size:18px;letter-spacing:0.6px}
+.navlinks{display:flex;gap:18px;align-items:center}
+.navlinks a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px}
+.navlinks a:hover{background:rgba(255,255,255,0.03)}
+.hero{border-radius:var(--radius);overflow:hidden;position:relative;margin-top:18px}
+.hero img{width:100%;height:auto;display:block}
+.hero-overlay{position:absolute;left:24px;bottom:24px}
+.hero h1{margin:0;font-size:40px;color:white}
+.hero p{margin:6px 0;color:#e6e6e6}
+.card{background:var(--card);padding:18px;border-radius:12px;margin-top:18px}
+.grid{display:grid;grid-template-columns:1fr 320px;gap:20px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.case-file{background:rgba(0,0,0,0.18);padding:12px;border-radius:10px}
+.small{font-size:14px;color:#bfc7cc}
+.cta{display:inline-block;background:var(--accent);color:white;padding:10px 14px;border-radius:8px;text-decoration:none;margin-top:8px}
+.section-title{font-size:22px;margin:0 0 12px 0;color:white}
+.fact-grid{display:flex;flex-wrap:wrap;gap:10px}
+.fact{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;font-size:14px}
+.img-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+@media(max-width:900px){.img-grid{grid-template-columns:repeat(2,1fr)}}
+.footer{margin:40px 0 80px 0;padding:18px;border-top:1px solid rgba(255,255,255,0.03);font-size:13px;color:#9aa2a7}
+.timeline{background:url('images/timeline.png') center/cover no-repeat;height:140px;border-radius:10px}
+blockquote{border-left:4px solid var(--gold);padding-left:12px;color:#e9e7df;margin:12px 0}
