@@ -1,80 +1,784 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Harold Frederick Shipman — Cover & Introduction — Shipman Case Study</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harold Frederick Shipman - A Forensic Study</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #e8e8e8;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: #1a1a1a;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid #8b0000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav button {
+            background: transparent;
+            color: #e8e8e8;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        nav button:hover, nav button.active {
+            color: #c41e3a;
+            border-bottom-color: #c41e3a;
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="600"><rect fill="%23262626"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 8rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid #8b0000;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: #c41e3a;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            color: #e8e8e8;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero .byline {
+            font-size: 1.1rem;
+            color: #999;
+            font-style: italic;
+        }
+
+        /* Content Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            color: #c41e3a;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 6px solid #8b0000;
+            padding-left: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h3 {
+            color: #e8e8e8;
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        /* Fact Boxes */
+        .fact-box {
+            background: #1a1a1a;
+            border: 3px solid #8b0000;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(139,0,0,0.3);
+        }
+
+        .fact-box h4 {
+            color: #c41e3a;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+        }
+
+        .fact-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .fact-box li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .fact-box li:last-child {
+            border-bottom: none;
+        }
+
+        .fact-box li strong {
+            color: #c41e3a;
+            display: inline-block;
+            min-width: 150px;
+        }
+
+        /* Pull Quotes */
+        .pull-quote {
+            background: #8b0000;
+            color: #fff;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-size: 1.3rem;
+            font-style: italic;
+            border-left: 6px solid #c41e3a;
+            border-radius: 4px;
+        }
+
+        /* Video Container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 2rem 0;
+            border: 4px solid #8b0000;
+            border-radius: 8px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Timeline */
+        .timeline {
+            background: #1a1a1a;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 4px solid #c41e3a;
+        }
+
+        .timeline-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-date {
+            color: #c41e3a;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Statistics Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: #1a1a1a;
+            padding: 2rem;
+            border: 2px solid #8b0000;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: #c41e3a;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #999;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Links Section */
+        .references {
+            background: #1a1a1a;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .references a {
+            color: #c41e3a;
+            text-decoration: none;
+            display: block;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: #0a0a0a;
+            border-left: 4px solid #8b0000;
+            transition: all 0.3s;
+        }
+
+        .references a:hover {
+            background: #262626;
+            border-left-width: 8px;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: linear-gradient(135deg, #8b0000, #c41e3a);
+            color: #fff;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero h2 {
+                font-size: 1.3rem;
+            }
+            nav ul {
+                gap: 0.5rem;
+            }
+            nav button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="topnav">
-    <div class="site-title">Shipman Case File</div>
-    <div class="navlinks">
-      <a href="index.html">Home</a>
-      <a href="background.html">Background</a>
-      <a href="psychology.html">Motivations</a>
-      <a href="crimes.html">Crimes</a>
-      <a href="capture.html">Capture & Outcome</a>
-      <a href="sources.html">Sources</a>
-    </div>
-  </div>
-</div>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><button class="nav-btn active" onclick="showPage('page1')">Introduction</button></li>
+            <li><button class="nav-btn" onclick="showPage('page2')">Background</button></li>
+            <li><button class="nav-btn" onclick="showPage('page3')">Psychology</button></li>
+            <li><button class="nav-btn" onclick="showPage('page4')">Crimes</button></li>
+            <li><button class="nav-btn" onclick="showPage('page5')">Justice</button></li>
+            <li><button class="nav-btn" onclick="showPage('page6')">References</button></li>
+        </ul>
+    </nav>
 
-<div class="container">
-  <div class="hero card">
-    <img src="images/portrait.png" alt="Hero image for Harold Frederick Shipman — Cover & Introduction">
-    <div class="hero-overlay">
-      <h1>Harold Frederick Shipman — Cover & Introduction</h1>
-      <p class="small">A forensic, educational case study — professional tone, respectful of victims.</p>
-    </div>
-  </div>
-
-  <div class="grid">
-    <div>
-      
-  <div class="card">
-    <p class="small">Understanding why individuals commit murder is essential to forensic psychology and to improving public safety. The case of Harold Frederick Shipman, a medical professional who used his position to kill patients, illustrates how authority and trust can be abused, and how systemic gaps allow prolonged wrongdoing. This site presents a factual, forensic account of Shipman’s life, the observed patterns in his offenses, the investigative steps that led to his arrest, and the subsequent reforms that reshaped medical oversight in the UK. Our aim is to inform and to identify lessons for preventing similar abuses of power in healthcare.</p>
-    <a class="cta" href="background.html">Begin the Case File</a>
-    <div style="margin-top:12px" class="card">
-      <h3 class="section-title">Documentary overview</h3>
-      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px">
-        <iframe src="https://www.youtube.com/embed/jrWoFs7LY7E" title="Embedded documentary" style="position:absolute;left:0;top:0;width:100%;height:100%;border:0" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
-  <div class="card" style="margin-top:18px">
-    <h3 class="section-title">Quick summary</h3>
-    <p class="small">This site examines Harold Shipman’s background, the psychological themes that emerge, the methods attributed to his crimes, and the investigative and regulatory outcomes. Use the navigation above to explore separate sections of the case file.</p>
-  </div>
-
-    </div>
-    <aside>
-      <div class="card case-file">
-        <h3 class="small">Case file</h3>
-        <div style="margin-top:8px">
-          <div class="small"><strong>Born:</strong> 14 January 1946 — Nottingham</div>
-          <div class="small"><strong>Occupation:</strong> General Practitioner (GP)</div>
-          <div class="small"><strong>Conviction:</strong> 15 murders (2000)</div>
-          <div class="small"><strong>Estimated victims:</strong> 215–250</div>
-          <div class="small"><strong>Died:</strong> 2004 (suicide)</div>
+    <!-- PAGE 1: INTRODUCTION -->
+    <div id="page1" class="page active">
+        <div class="hero">
+            <h1>Harold Frederick Shipman</h1>
+            <h2>A Forensic Study of Britain's Most Prolific Serial Killer</h2>
+            <p class="byline">A Case Study by Hank H, James C, and Wyatt B</p>
         </div>
-      </div>
-      <div class="card" style="margin-top:12px">
-        <h4 class="small">Quick links</h4>
-        <div class="fact-grid" style="margin-top:8px">
-          <a class="fact" href="capture.html">Timeline & Reforms</a>
-          <a class="fact" href="crimes.html">Evidence & Methods</a>
-          <a class="fact" href="sources.html">Sources</a>
-        </div>
-      </div>
-    </aside>
-  </div>
 
-  <div class="footer">
-    <div>Educational case study — not a fan site. Image placeholders used; replace with licensed images. See Sources page for citations.</div>
-  </div>
-</div>
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">250+</span>
+                    <span class="stat-label">Estimated Victims</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">23</span>
+                    <span class="stat-label">Years Active</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Murder Convictions</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Documentary Investigation</h2>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/jrWoFs7LY7E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>The Importance of Studying Serial Offenders</h2>
+                
+                <p>The examination of serial killers serves a critical function in both criminal psychology and public safety. By analyzing the behaviors, patterns, and psychological profiles of these offenders, researchers and law enforcement gain valuable insights into the human capacity for deception and violence. Understanding how individuals like Harold Shipman operated allows society to identify warning signs before tragedies occur, implement preventative measures, and develop better screening protocols for positions of trust.</p>
+
+                <p>The Shipman case stands as a stark reminder that danger can emerge from the most trusted professions. As a physician, Shipman exploited the vulnerability of elderly patients who placed their lives in his hands. His decades-long killing spree went undetected precisely because of the authority and credibility his medical credentials afforded him. This case fundamentally challenged assumptions about who could become a serial killer and exposed critical gaps in medical oversight systems.</p>
+
+                <div class="pull-quote">
+                    "The most dangerous predators are often those we trust the most."
+                </div>
+
+                <p>Following Shipman's conviction, his crimes triggered sweeping reforms across the United Kingdom's healthcare system. The Shipman Inquiry led to enhanced monitoring of controlled substances, stricter verification procedures for death certificates, and increased accountability measures for general practitioners. These changes represent one of the few positive outcomes from an otherwise horrific chapter in British criminal history—a systemic evolution born from tragedy that continues to protect patients today.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: BACKGROUND -->
+    <div id="page2" class="page">
+        <div class="hero">
+            <h1>Background & Upbringing</h1>
+            <h2>The Making of a Killer</h2>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Childhood in Nottingham</h2>
+                
+                <p>Harold Frederick Shipman entered the world on January 14, 1946, in Nottingham, England, during the post-war recovery period. Raised in a middle-class household, he grew up in circumstances that appeared outwardly normal. His family maintained stability and respectability within their community, offering no obvious signs of the darkness that would later emerge.</p>
+
+                <p>From an early age, Shipman demonstrated exceptional intelligence and academic aptitude. However, his intellectual gifts came paired with significant social difficulties. He remained isolated from peers, struggling to form meaningful connections with classmates. Teachers noted his quiet demeanor and preference for solitude, traits that would persist throughout his life. While he excelled in structured academic environments, he seemed unable to navigate the social complexities of childhood and adolescence.</p>
+
+                <div class="fact-box">
+                    <h4>Early Life Profile</h4>
+                    <ul>
+                        <li><strong>Born:</strong> January 14, 1946</li>
+                        <li><strong>Location:</strong> Nottingham, England</li>
+                        <li><strong>Background:</strong> Middle-class family</li>
+                        <li><strong>Traits:</strong> Intelligent, isolated, academically gifted</li>
+                        <li><strong>Social Life:</strong> Limited peer connections</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Maternal Bond and Tragedy</h2>
+                
+                <p>The most significant relationship in Shipman's formative years was with his mother. Their bond transcended typical parent-child dynamics; she represented his primary emotional anchor in a world where he otherwise remained disconnected. When she developed terminal cancer during his teenage years, Shipman witnessed her suffering firsthand. He observed healthcare providers administering morphine to ease her pain during her final days—a detail that would later acquire chilling significance.</p>
+
+                <div class="pull-quote">
+                    "The death of Shipman's mother when he was seventeen may have fractured something fundamental in his psychological development."
+                </div>
+
+                <p>Her death when Shipman was just seventeen devastated him. Some psychological analyses suggest this loss fractured something fundamental in his emotional development, potentially creating an association between morphine, control over suffering, and the act of ending life. Whether this experience planted the seeds of his future crimes remains debated, but the timing and nature of her death undeniably shaped his psychological landscape.</p>
+            </div>
+
+            <div class="section">
+                <h2>The Trusted Doctor</h2>
+                
+                <p>Despite his social struggles, Shipman's academic excellence continued. He gained admission to Leeds School of Medicine, where he completed his training and graduated in 1970. This achievement positioned him within one of society's most respected professions, granting him authority, trust, and unsupervised access to vulnerable patients.</p>
+
+                <p>Shipman established himself as a dedicated general practitioner who made house calls and saw patients in his office—practices that fostered deep trust within his community. Elderly patients, in particular, came to rely on him. He projected an image of competence and care, never arousing suspicion even as death rates among his patients began to climb. His medical credentials became the perfect cover for murder, providing both means and opportunity while deflecting any potential scrutiny.</p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">1946</div>
+                        <div>Born in Nottingham, England</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1963</div>
+                        <div>Mother dies of cancer; Shipman witnesses morphine administration</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1970</div>
+                        <div>Graduates from Leeds School of Medicine</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1975</div>
+                        <div>Begins general practice; killing likely begins</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: PSYCHOLOGY -->
+    <div id="page3" class="page">
+        <div class="hero">
+            <h1>Motivations & Psychology</h1>
+            <h2>Inside the Mind of a Killer</h2>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>The God Complex</h2>
+                
+                <p>Shipman's killings centered on power—specifically, the ultimate power of determining who lived and who died. His victims were predominantly elderly women who depended entirely on his medical judgment. In these relationships, he held absolute authority. They trusted him without question, followed his instructions, and welcomed him into their homes. This dynamic fed a profound need for control that defined his psychological makeup.</p>
+
+                <p>By choosing vulnerable, dependent patients, Shipman ensured minimal resistance and maximum dominance. Each injection represented not just murder but an assertion of his supremacy over life itself. He occupied a position where his decisions went unchallenged, his assessments unquestioned. For someone who struggled with social relationships throughout his life, this absolute control may have provided the sense of mastery he could never achieve through normal human connection.</p>
+
+                <div class="fact-box">
+                    <h4>Psychological Profile</h4>
+                    <ul>
+                        <li><strong>Primary Drive:</strong> Power and control over life and death</li>
+                        <li><strong>Victim Selection:</strong> Vulnerable, dependent elderly patients</li>
+                        <li><strong>Personality Type:</strong> Narcissistic with god complex</li>
+                        <li><strong>Behavioral Pattern:</strong> Systematic, routine-based killing</li>
+                        <li><strong>Emotional State:</strong> Complete absence of remorse</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>The Double Life</h2>
+                
+                <p>Shipman maintained two completely separate identities with chilling proficiency. To the public, he remained Dr. Shipman—caring, professional, and dedicated. Behind this carefully constructed facade, he systematically murdered patients while falsifying medical records to cover his tracks. This required extraordinary compartmentalization and an alarming comfort with sustained deception.</p>
+
+                <div class="pull-quote">
+                    "250 murders. Zero remorse. A perfect mask that never slipped."
+                </div>
+
+                <p>He demonstrated no visible signs of guilt or distress. Colleagues noticed nothing unusual in his demeanor. He continued his daily routines without disruption, signing death certificates for patients he had just murdered, attending to other patients immediately afterward, and maintaining his reputation in the community. This level of sustained deception indicates profound antisocial traits and a complete absence of empathy for his victims.</p>
+            </div>
+
+            <div class="section">
+                <h2>Systematic Killing</h2>
+                
+                <p>Unlike disorganized killers who act impulsively, Shipman operated with calculated precision. His murders followed distinct patterns—specific victim profiles, consistent methods, predictable cover stories. This systematic approach suggests compulsive elements to his behavior, as if the killings fulfilled some internal ritual or need that demanded repetition.</p>
+
+                <p>The routine nature of his crimes also reveals narcissistic thinking. He believed himself intellectually superior to potential investigators, confident that his medical authority would shield him indefinitely. Each successful murder reinforced this belief, creating a cycle where overconfidence bred carelessness—the carelessness that would ultimately lead to his capture.</p>
+            </div>
+
+            <div class="section">
+                <h2>Echoes of Loss</h2>
+                
+                <p>Many psychological experts have examined the potential connection between Shipman's mother's death and his choice of weapon. He witnessed morphine easing her suffering during her final days—creating an association between the drug and peaceful death. When he began killing, he chose diamorphine (pharmaceutical heroin, closely related to morphine) as his method.</p>
+
+                <p>Whether this represents an unconscious attempt to recreate his mother's death, a twisted form of mercy killing in his own mind, or simply a practical choice given his medical access remains debated. What stands clear is that Shipman possessed narcissistic traits that allowed him to see himself as above moral and legal constraints, making decisions about life and death that he had no right to make.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 4: CRIMES -->
+    <div id="page4" class="page">
+        <div class="hero">
+            <h1>The Crimes</h1>
+            <h2>Methods, Victims, and Warning Signs</h2>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>250 Lives Ended</h2>
+                
+                <p>Conservative estimates place Shipman's victim count between 215 and 250 individuals, though the true number may never be known. This makes him the most prolific serial killer in documented British history. His victims shared striking similarities: the overwhelming majority were women over the age of sixty, often living alone, who trusted him implicitly as their physician.</p>
+
+                <p>These weren't random targets. Shipman selected patients who were vulnerable, isolated, and unlikely to have family members present during visits. Many lived independently but relied on regular medical check-ins. They represented the perfect victims from a predator's perspective—trusting, unguarded, and easy to access without witnesses.</p>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">215-250</span>
+                        <span class="stat-label">Estimated Victims</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">80%+</span>
+                        <span class="stat-label">Women Over 60</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">Method: Diamorphine</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Lethal Injection</h2>
+                
+                <p>Shipman's murder weapon was diamorphine, a medical-grade form of heroin used for severe pain management. He administered fatal overdoses to patients, typically during house calls or private office appointments. The drug acted quickly, causing respiratory failure that could easily be mistaken for natural death in elderly patients with existing health conditions.</p>
+
+                <p>His position as their doctor provided perfect cover. He controlled their medical records, determined causes of death, and signed the death certificates himself. In most cases, he certified the deaths as resulting from natural causes—heart failure, stroke, or complications from existing illnesses. Families, grieving and trusting his professional judgment, rarely questioned his assessments.</p>
+
+                <div class="fact-box">
+                    <h4>Murder Method Profile</h4>
+                    <ul>
+                        <li><strong>Weapon:</strong> Diamorphine (Medical Heroin)</li>
+                        <li><strong>Typical Victims:</strong> Women, 60+ years old</li>
+                        <li><strong>Location:</strong> Home visits or private office</li>
+                        <li><strong>Cover Story:</strong> Natural death / existing conditions</li>
+                        <li><strong>Red Flag:</strong> Shipman signed his own victims' death certificates</li>
+                        <li><strong>Effect:</strong> Respiratory failure, appeared peaceful</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>The Deadly Routine</h2>
+                
+                <p>Several patterns emerged that should have triggered earlier investigation. Shipman's patient death rate significantly exceeded those of other general practitioners in the area. He consistently signed death certificates for patients who had appeared relatively healthy shortly before dying. Multiple patients died alone with only Shipman present—an unusual clustering that should have raised concerns.</p>
+
+                <p>Additionally, his victims often died in similar circumstances: sitting in chairs, appearing peaceful, with Shipman present or having just left. He would then express appropriate sadness, contact family members, and handle the bureaucratic aftermath with practiced efficiency. This routine became so established that it functioned as his signature—unnoticed until investigators finally examined the full scope of deaths under his care.</p>
+            </div>
+
+            <div class="section">
+                <h2>The 1976 Incident: The Missed Opportunity</h2>
+                
+                <div class="warning-box">
+                    ⚠️ CRITICAL FAILURE: In 1976, Shipman was caught forging prescriptions for pethidine (a powerful painkiller) for his own use. He received only a fine and rehabilitation—and was allowed to continue practicing medicine.
+                </div>
+
+                <p>A critical opportunity to stop Shipman emerged in 1976, early in his career. He was caught forging prescriptions for pethidine, a powerful painkiller, for his own use. This represented clear evidence of drug abuse and professional misconduct—behavior that should have resulted in permanent license revocation.</p>
+
+                <p>Instead, Shipman received a fine and completed a rehabilitation program. Astonishingly, he was allowed to continue practicing medicine. This decision proved catastrophic. Rather than serving as a deterrent or intervention point, the incident simply taught Shipman to be more careful. He learned which behaviors triggered scrutiny and adjusted his approach accordingly, becoming even more difficult to detect.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 5: JUSTICE -->
+    <div id="page5" class="page">
+        <div class="hero">
+            <h1>Capture & Outcome</h1>
+            <h2>Investigation, Trial, and Aftermath</h2>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>A Daughter's Suspicion</h2>
+                
+                <p>Shipman's downfall began with Kathleen Grundy, a healthy, active 81-year-old former mayoress who died suddenly in June 1998. When her will surfaced, it showed she had left her entire estate—£386,000—to Shipman. Her daughter, Angela Woodruff, herself a solicitor, immediately recognized something was wrong. Her mother would never have made such a bequest, and the will appeared amateurishly forged.</p>
+
+                <div class="pull-quote">
+                    "One daughter's refusal to accept the official story brought down a serial killer."
+                </div>
+
+                <p>Woodruff contacted the police, insisting on an investigation. Initially, authorities were reluctant—Shipman was a respected doctor with no criminal history beyond the decades-old prescription incident. But Woodruff persisted, and eventually, police agreed to exhume Grundy's body. Toxicology tests revealed lethal levels of diamorphine—a drug she had no medical reason to receive.</p>
+            </div>
+
+            <div class="section">
+                <h2>The Evidence Mounts</h2>
+                
+                <p>Once investigators began scrutinizing Shipman's practice, the horrifying scope of his crimes became apparent. They discovered:</p>
+
+                <div class="fact-box">
+                    <h4>Key Evidence</h4>
+                    <ul>
+                        <li><strong>Altered Medical Records:</strong> Retroactively modified to justify unexpected deaths</li>
+                        <li><strong>Death Certificate Patterns:</strong> Extraordinary number signed by Shipman himself</li>
+                        <li><strong>Drug Records:</strong> Excessive quantities of diamorphine obtained</li>
+                        <li><strong>Statistical Analysis:</strong> Death rate 3x higher than other GPs</li>
+                        <li><strong>Victim Clustering:</strong> Hundreds of suspicious deaths over decades</li>
+                    </ul>
+                </div>
+
+                <p>The investigation expanded rapidly. Police identified dozens, then hundreds of suspicious deaths spanning decades. Each case followed the same template: vulnerable elderly patient, private visit from Shipman, sudden death, and a death certificate signed by Shipman himself citing natural causes.</p>
+            </div>
+
+            <div class="section">
+                <h2>Conviction</h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">September 7, 1998</div>
+                        <div>Harold Shipman arrested on suspicion of murder</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">October 1999</div>
+                        <div>Trial begins with overwhelming evidence presented</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">January 31, 2000</div>
+                        <div>Convicted of 15 murders and 1 count of forgery</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Sentence</div>
+                        <div>Life imprisonment without possibility of parole</div>
+                    </div>
+                </div>
+
+                <p>On September 7, 1998, police arrested Harold Shipman on suspicion of murder. Even then, he maintained his innocence, expressing outrage that anyone would question his professional integrity. He showed no remorse and offered no confessions, instead portraying himself as a victim of persecution.</p>
+
+                <p>His trial began in October 1999. Prosecutors presented overwhelming evidence: forged medical records, statistical anomalies, toxicology results, and the crudely forged will. Witnesses testified about healthy relatives who died suddenly after Shipman's visits. Medical experts explained how death patterns in his practice defied all statistical norms.</p>
+
+                <p>In January 2000, the jury convicted Shipman of fifteen murders and one count of forgery. The judge sentenced him to life imprisonment with a recommendation that he never be released—one of the harshest sentences possible under British law. While charged with only fifteen murders, the investigation confirmed that the actual body count likely exceeded 200.</p>
+            </div>
+
+            <div class="section">
+                <h2>The Shipman Inquiry: Systemic Reform</h2>
+                
+                <p>Following the conviction, the British government launched a comprehensive inquiry to determine how Shipman operated undetected for so long. The Shipman Inquiry, chaired by Dame Janet Smith, examined every aspect of his practice and identified numerous failures in the medical oversight system.</p>
+
+                <div class="fact-box">
+                    <h4>Major Healthcare Reforms</h4>
+                    <ul>
+                        <li><strong>Controlled Substance Monitoring:</strong> New tracking systems for drugs like diamorphine</li>
+                        <li><strong>Death Certificate Verification:</strong> Additional scrutiny required, especially for sole-witness deaths</li>
+                        <li><strong>GP Accountability:</strong> Enhanced monitoring of death rates and unusual patterns</li>
+                        <li><strong>Witness Requirements:</strong> Multiple witnesses encouraged for patient deaths</li>
+                        <li><strong>Performance Monitoring:</strong> Statistical analysis systems to detect anomalies</li>
+                    </ul>
+                </div>
+
+                <p>These reforms represent Shipman's only positive legacy—a healthcare system made safer through lessons learned from his crimes. The changes have likely prevented similar cases and continue to protect patients across the United Kingdom.</p>
+            </div>
+
+            <div class="section">
+                <h2>Death in Custody</h2>
+                
+                <p>On January 13, 2004—one day before what would have been his 58th birthday—Harold Shipman was found dead in his cell at Wakefield Prison. He had hanged himself using bed sheets. His suicide prevented any possibility of confession or fuller accounting of his crimes. Victims' families would never receive explanations or closure. His motivations, the full extent of his killing, and his internal justifications died with him.</p>
+
+                <p>Some interpreted his suicide as a final act of control—choosing the time and manner of his own death, just as he had for his victims. Others saw it as an escape from consequences, a refusal to face the full weight of his crimes. Regardless, Shipman's death ended the life of Britain's most prolific serial killer but left countless questions permanently unanswered.</p>
+
+                <div class="warning-box">
+                    Harold Shipman died by suicide on January 13, 2004, taking with him any chance of understanding the full scope and motivation behind his crimes.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 6: REFERENCES -->
+    <div id="page6" class="page">
+        <div class="hero">
+            <h1>Sources & References</h1>
+            <h2>Further Reading and Research</h2>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Academic & Medical Sources</h2>
+                
+                <div class="references">
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC318504/" target="_blank">
+                        <strong>The Shipman Inquiry Report</strong><br>
+                        National Center for Biotechnology Information<br>
+                        Comprehensive medical and investigative analysis of the case
+                    </a>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Biographical References</h2>
+                
+                <div class="references">
+                    <a href="https://www.britannica.com/biography/Harold-Shipman" target="_blank">
+                        <strong>Harold Shipman - Encyclopædia Britannica</strong><br>
+                        Detailed biographical and historical overview<br>
+                        From the world's leading reference source
+                    </a>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Recent Analysis</h2>
+                
+                <div class="references">
+                    <a href="https://www.abc.net.au/news/2025-01-05/harold-shipman-britains-most-prolific-serial-killer/104771572" target="_blank">
+                        <strong>Harold Shipman: Britain's Most Prolific Serial Killer</strong><br>
+                        ABC News - January 2025<br>
+                        Current analysis examining the case's lasting impact
+                    </a>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Documentary Resources</h2>
+                
+                <div class="references">
+                    <a href="https://www.youtube.com/watch?v=jrWoFs7LY7E" target="_blank">
+                        <strong>The Shipman Files Documentary</strong><br>
+                        YouTube<br>
+                        Comprehensive video investigation (featured on Introduction page)
+                    </a>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Recommended Research Areas</h2>
+                
+                <div class="fact-box">
+                    <h4>Topics for Further Study</h4>
+                    <ul>
+                        <li><strong>Criminal Psychology:</strong> The psychology of medical serial killers and authority figures who abuse trust</li>
+                        <li><strong>Medical Ethics:</strong> Case studies in professional oversight and accountability systems</li>
+                        <li><strong>Victimology:</strong> The targeting of elderly and vulnerable populations by predatory individuals</li>
+                        <li><strong>Systemic Reform:</strong> How major crimes drive institutional change in healthcare and law enforcement</li>
+                        <li><strong>Trust in Medicine:</strong> Patient-doctor relationships and the abuse of medical authority</li>
+                        <li><strong>Serial Killer Typology:</strong> Organized vs. disorganized offenders, medical killers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="warning-box">
+                    <strong>Educational Purpose Notice</strong><br><br>
+                    This case study represents one of the darkest chapters in British criminal history. The information provided is intended for educational and awareness purposes—to understand how such crimes occur, how they were detected, and how systems evolved to prevent future tragedies. This is not entertainment but a serious examination of a profound failure in trust and medical oversight.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Map Reference</h2>
+                <p style="text-align: center; color: #999; font-style: italic;">
+                    Key Locations: Nottingham (birthplace, 1946) • Leeds (medical school, 1965-1970) • Greater Manchester (primary practice area, 1975-1998)
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Remove active class from all nav buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+
 </body>
 </html>

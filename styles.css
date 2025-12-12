@@ -1,39 +1,201 @@
+/* ============================
+   GLOBAL STYLES
+============================ */
 
-:root{
-  --bg:#0f1113;
-  --card:#2f3942;
-  --accent:#9b111e;
-  --muted:#cfd6db;
-  --gold:#C9AB6B;
-  --radius:12px;
-  --maxw:1100px;
-  --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #0f0f0f;
+    color: #e5e5e5;
+    line-height: 1.7;
 }
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:var(--sans);background:var(--bg);color:var(--muted);-webkit-font-smoothing:antialiased}
-a{color:var(--accent)}
-.container{max-width:var(--maxw);margin:28px auto;padding:0 18px}
-.topnav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
-.site-title{font-weight:700;font-size:18px;letter-spacing:0.6px}
-.navlinks{display:flex;gap:18px;align-items:center}
-.navlinks a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px}
-.navlinks a:hover{background:rgba(255,255,255,0.03)}
-.hero{border-radius:var(--radius);overflow:hidden;position:relative;margin-top:18px}
-.hero img{width:100%;height:auto;display:block}
-.hero-overlay{position:absolute;left:24px;bottom:24px}
-.hero h1{margin:0;font-size:40px;color:white}
-.hero p{margin:6px 0;color:#e6e6e6}
-.card{background:var(--card);padding:18px;border-radius:12px;margin-top:18px}
-.grid{display:grid;grid-template-columns:1fr 320px;gap:20px}
-@media(max-width:900px){.grid{grid-template-columns:1fr}}
-.case-file{background:rgba(0,0,0,0.18);padding:12px;border-radius:10px}
-.small{font-size:14px;color:#bfc7cc}
-.cta{display:inline-block;background:var(--accent);color:white;padding:10px 14px;border-radius:8px;text-decoration:none;margin-top:8px}
-.section-title{font-size:22px;margin:0 0 12px 0;color:white}
-.fact-grid{display:flex;flex-wrap:wrap;gap:10px}
-.fact{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;font-size:14px}
-.img-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
-@media(max-width:900px){.img-grid{grid-template-columns:repeat(2,1fr)}}
-.footer{margin:40px 0 80px 0;padding:18px;border-top:1px solid rgba(255,255,255,0.03);font-size:13px;color:#9aa2a7}
-.timeline{background:url('images/timeline.png') center/cover no-repeat;height:140px;border-radius:10px}
-blockquote{border-left:4px solid var(--gold);padding-left:12px;color:#e9e7df;margin:12px 0}
+
+/* Accent Colors */
+:root {
+    --crimson: #b30000;
+    --steel: #3a3a3a;
+    --charcoal: #1a1a1a;
+}
+
+/* ============================
+   NAVIGATION
+============================ */
+
+nav {
+    width: 100%;
+    background-color: var(--charcoal);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(255, 0, 0, 0.15);
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #e5e5e5;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav a::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    background: var(--crimson);
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: var(--crimson);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* ============================
+   PAGE HEADERS
+============================ */
+
+.header-banner {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    background-color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+/* Red overlay */
+.header-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(179, 0, 0, 0.25);
+}
+
+.header-banner h1 {
+    position: relative;
+    font-size: 48px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: white;
+    z-index: 2;
+}
+
+/* ============================
+   CONTENT CONTAINERS
+============================ */
+
+.container {
+    width: 85%;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding-bottom: 40px;
+}
+
+h2 {
+    color: var(--crimson);
+    border-left: 4px solid var(--crimson);
+    padding-left: 10px;
+}
+
+p {
+    color: #dcdcdc;
+}
+
+/* ============================
+   CARDS & HOVER EFFECTS
+============================ */
+
+.card {
+    background: #181818;
+    border: 1px solid #2a2a2a;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 25px 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 18px rgba(179, 0, 0, 0.35);
+}
+
+/* ============================
+   IMAGE EFFECTS
+============================ */
+
+img {
+    width: 100%;
+    border-radius: 8px;
+    margin: 20px 0;
+    transition: 0.3s ease;
+}
+
+/* Image hover zoom */
+img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 14px rgba(255, 0, 0, 0.25);
+}
+
+/* ============================
+   TIMELINE
+============================ */
+
+.timeline {
+    border-left: 3px solid var(--crimson);
+    padding-left: 20px;
+}
+
+.timeline-item {
+    margin-bottom: 20px;
+    padding-left: 10px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background: var(--crimson);
+    border-radius: 50%;
+    position: absolute;
+    left: -27px;
+    top: 5px;
+}
+
+/* ============================
+   LINKS PAGE
+============================ */
+
+a.source-link {
+    color: #ff4444;
+    text-decoration: none;
+    font-size: 18px;
+    transition: opacity 0.2s;
+}
+
+a.source-link:hover {
+    opacity: 0.6;
+}
