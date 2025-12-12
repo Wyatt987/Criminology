@@ -252,6 +252,107 @@
             margin-bottom: 0.5rem;
         }
 
+        /* Hover & interaction effects */
+        .stat-card {
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+            will-change: transform;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(196,30,58,0.18);
+            border-color: #c41e3a;
+        }
+
+        .fact-box, .pull-quote, .warning-box, .references a, nav button {
+            transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .fact-box:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+        }
+
+        nav button:hover {
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        .references a:hover {
+            transform: translateX(6px);
+        }
+
+        /* Carousel */
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #8b0000;
+            border-radius: 8px;
+            background: #0f0f0f;
+            margin: 2rem 0;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(.22,.9,.28,1);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 6px;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .carousel-controls button {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.06);
+            color: #fff;
+            font-size: 1.25rem;
+            padding: 0.6rem 0.8rem;
+            margin: 0 0.5rem;
+            border-radius: 6px;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .carousel-dots {
+            text-align: center;
+            padding: 0.75rem 0;
+        }
+
+        .carousel-dots button {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: none;
+            margin: 0 6px;
+            background: #333;
+            cursor: pointer;
+        }
+
+        .carousel-dots button.active {
+            background: #c41e3a;
+        }
+
         .stat-label {
             color: #999;
             font-size: 1rem;
@@ -316,12 +417,12 @@
     <!-- Navigation -->
     <nav>
         <ul>
-            <li><button class="nav-btn active" onclick="showPage('page1')">Introduction</button></li>
-            <li><button class="nav-btn" onclick="showPage('page2')">Background</button></li>
-            <li><button class="nav-btn" onclick="showPage('page3')">Psychology</button></li>
-            <li><button class="nav-btn" onclick="showPage('page4')">Crimes</button></li>
-            <li><button class="nav-btn" onclick="showPage('page5')">Justice</button></li>
-            <li><button class="nav-btn" onclick="showPage('page6')">References</button></li>
+            <li><button class="nav-btn active" onclick="showPage('page1', this)">Introduction</button></li>
+            <li><button class="nav-btn" onclick="showPage('page2', this)">Background</button></li>
+            <li><button class="nav-btn" onclick="showPage('page3', this)">Psychology</button></li>
+            <li><button class="nav-btn" onclick="showPage('page4', this)">Crimes</button></li>
+            <li><button class="nav-btn" onclick="showPage('page5', this)">Justice</button></li>
+            <li><button class="nav-btn" onclick="showPage('page6', this)">References</button></li>
         </ul>
     </nav>
 
@@ -336,17 +437,43 @@
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-card">
-                    <span class="stat-number">250+</span>
+                    <span class="stat-number" data-target="250" data-suffix="+">0</span>
                     <span class="stat-label">Estimated Victims</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-number">23</span>
+                    <span class="stat-number" data-target="23">0</span>
                     <span class="stat-label">Years Active</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-number">15</span>
+                    <span class="stat-number" data-target="15">0</span>
                     <span class="stat-label">Murder Convictions</span>
                 </div>
+            </div>
+
+            <!-- Carousel: Quick facts / imagery -->
+            <div class="carousel" id="introCarousel" aria-label="Intro carousel">
+                <div class="carousel-track">
+                    <div class="carousel-slide">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='500'><rect width='100%' height='100%' fill='%23111111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23c41e3a' font-size='36'>Investigative Records</text></svg>" alt="Investigative Records">
+                        <h3>Investigative Records</h3>
+                        <p>Statistical analysis and medical records played a key role in identifying anomalies.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='500'><rect width='100%' height='100%' fill='%23111111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23c41e3a' font-size='36'>Systemic Reform</text></svg>" alt="Systemic Reform">
+                        <h3>Systemic Reform</h3>
+                        <p>Shipman's case prompted reforms to drug monitoring and death certificate verification.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='500'><rect width='100%' height='100%' fill='%23111111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23c41e3a' font-size='36'>Victim Stories</text></svg>" alt="Victim Stories">
+                        <h3>Victim Stories</h3>
+                        <p>Remembering victims centers the work: families and communities affected by loss.</p>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-prev" aria-label="Previous">‹</button>
+                    <button class="carousel-next" aria-label="Next">›</button>
+                </div>
+                <div class="carousel-dots" role="tablist"></div>
             </div>
 
             <div class="section">
@@ -513,18 +640,18 @@
                 <p>These weren't random targets. Shipman selected patients who were vulnerable, isolated, and unlikely to have family members present during visits. Many lived independently but relied on regular medical check-ins. They represented the perfect victims from a predator's perspective—trusting, unguarded, and easy to access without witnesses.</p>
 
                 <div class="stats-grid">
-                    <div class="stat-card">
-                        <span class="stat-number">215-250</span>
-                        <span class="stat-label">Estimated Victims</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">80%+</span>
-                        <span class="stat-label">Women Over 60</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">1</span>
-                        <span class="stat-label">Method: Diamorphine</span>
-                    </div>
+                        <div class="stat-card">
+                            <span class="stat-number" data-target="215" data-suffix="-250">0</span>
+                            <span class="stat-label">Estimated Victims</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" data-target="80" data-suffix="%+">0</span>
+                            <span class="stat-label">Women Over 60</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" data-target="1">0</span>
+                            <span class="stat-label">Method: Diamorphine</span>
+                        </div>
                 </div>
             </div>
 
@@ -760,24 +887,86 @@
     </div>
 
     <script>
-        function showPage(pageId) {
-            // Hide all pages
+        function showPage(pageId, btn) {
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
-            
-            // Remove active class from all nav buttons
             const buttons = document.querySelectorAll('.nav-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            
-            // Show selected page
-            document.getElementById(pageId).classList.add('active');
-            
-            // Add active class to clicked button
-            event.target.classList.add('active');
-            
-            // Scroll to top
+            buttons.forEach(b => b.classList.remove('active'));
+            const target = document.getElementById(pageId);
+            if (target) target.classList.add('active');
+            if (btn && btn.classList) btn.classList.add('active');
             window.scrollTo(0, 0);
         }
+
+        function animateCounters(duration = 1000) {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(el => {
+                const raw = el.getAttribute('data-target');
+                const target = raw ? parseInt(raw, 10) : NaN;
+                const suffix = el.getAttribute('data-suffix') || '';
+                if (!isNaN(target)) {
+                    const start = 0;
+                    const startTime = performance.now();
+                    const step = (now) => {
+                        const progress = Math.min((now - startTime) / duration, 1);
+                        const value = Math.round(progress * (target - start) + start);
+                        el.textContent = value + suffix;
+                        if (progress < 1) requestAnimationFrame(step);
+                        else el.textContent = target + suffix;
+                    };
+                    requestAnimationFrame(step);
+                }
+            });
+        }
+
+        function initCarousel(containerId, opts = {}) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const track = container.querySelector('.carousel-track');
+            const slides = Array.from(track.children);
+            const prev = container.querySelector('.carousel-prev');
+            const next = container.querySelector('.carousel-next');
+            const dotsWrap = container.querySelector('.carousel-dots');
+            let index = 0;
+            let interval = opts.interval || 3000;
+            let timer = null;
+
+            slides.forEach((s, i) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.setAttribute('aria-label', 'Slide ' + (i+1));
+                btn.addEventListener('click', () => { goTo(i); resetTimer(); });
+                dotsWrap.appendChild(btn);
+            });
+            const dots = Array.from(dotsWrap.children);
+
+            function update() {
+                track.style.transform = 'translateX(-' + (index * 100) + '%)';
+                dots.forEach((d, i) => d.classList.toggle('active', i === index));
+            }
+
+            function goTo(i) { index = (i + slides.length) % slides.length; update(); }
+            function prevSlide() { goTo(index - 1); resetTimer(); }
+            function nextSlide() { goTo(index + 1); resetTimer(); }
+
+            if (prev) prev.addEventListener('click', prevSlide);
+            if (next) next.addEventListener('click', nextSlide);
+
+            function startTimer() { stopTimer(); timer = setInterval(() => goTo(index + 1), interval); }
+            function stopTimer() { if (timer) { clearInterval(timer); timer = null; } }
+            function resetTimer() { stopTimer(); startTimer(); }
+
+            container.addEventListener('mouseenter', stopTimer);
+            container.addEventListener('mouseleave', startTimer);
+
+            update();
+            startTimer();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            animateCounters(1000);
+            initCarousel('introCarousel', { interval: 3500 });
+        });
     </script>
 
 </body>
