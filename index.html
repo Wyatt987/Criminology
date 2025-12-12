@@ -395,6 +395,54 @@
         }
 
         /* Responsive */
+        /* Light theme overrides (applies when `light-theme` class is on <html>) */
+        .light-theme body {
+            background: #f5f6f7;
+            color: #111317;
+        }
+
+        .light-theme nav {
+            background: #ffffff;
+            border-bottom-color: #c41e3a;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .light-theme nav button {
+            color: #111317;
+        }
+
+        .light-theme .hero {
+            background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.9));
+            color: #211;
+            border-bottom-color: #c41e3a;
+        }
+
+        .light-theme .fact-box,
+        .light-theme .stat-card,
+        .light-theme .references,
+        .light-theme .timeline,
+        .light-theme .warning-box {
+            background: #ffffff;
+            color: #111317;
+            border-color: rgba(196,30,58,0.12);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+        }
+
+        .light-theme .pull-quote {
+            background: #c41e3a;
+            color: #fff;
+        }
+
+        .light-theme .stat-number {
+            color: #c41e3a;
+        }
+
+        .light-theme .references a {
+            background: #fff;
+            color: #1a1a1a;
+            border-left-color: rgba(196,30,58,0.12);
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2rem;
@@ -423,6 +471,7 @@
             <li><button class="nav-btn" onclick="showPage('page4', this)">Crimes</button></li>
             <li><button class="nav-btn" onclick="showPage('page5', this)">Justice</button></li>
             <li><button class="nav-btn" onclick="showPage('page6', this)">References</button></li>
+                <li><button id="themeToggle" class="nav-btn" title="Toggle theme">🌙 Dark</button></li>
         </ul>
     </nav>
 
@@ -963,7 +1012,31 @@
             startTimer();
         }
 
+        function applyTheme(theme) {
+            const root = document.documentElement;
+            if (theme === 'light') root.classList.add('light-theme');
+            else root.classList.remove('light-theme');
+            const btn = document.getElementById('themeToggle');
+            if (btn) btn.textContent = theme === 'light' ? '🌞 Light' : '🌙 Dark';
+        }
+
+        function toggleTheme() {
+            const current = document.documentElement.classList.contains('light-theme') ? 'light' : 'dark';
+            const next = current === 'light' ? 'dark' : 'light';
+            applyTheme(next);
+            try { localStorage.setItem('siteTheme', next); } catch (e) { /* ignore */ }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+            // Load persisted theme (default: dark)
+            let saved = null;
+            try { saved = localStorage.getItem('siteTheme'); } catch (e) { saved = null; }
+            if (!saved) saved = 'dark';
+            applyTheme(saved);
+
+            const themeBtn = document.getElementById('themeToggle');
+            if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
+
             animateCounters(1000);
             initCarousel('introCarousel', { interval: 3500 });
         });
