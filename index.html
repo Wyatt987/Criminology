@@ -353,6 +353,151 @@
             background: #c41e3a;
         }
 
+        /* Scroll animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes rotateIn {
+            from { opacity: 0; transform: rotate(-10deg) scale(0.9); }
+            to { opacity: 1; transform: rotate(0deg) scale(1); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0) translateX(0) scale(1) rotate(0deg);
+        }
+
+        .fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        .slide-in-left { animation: slideInLeft 0.8s ease-out forwards; }
+        .slide-in-right { animation: slideInRight 0.8s ease-out forwards; }
+        .scale-in { animation: scaleIn 0.8s ease-out forwards; }
+        .bounce-in { animation: bounceIn 1s ease-out forwards; }
+        .rotate-in { animation: rotateIn 0.8s ease-out forwards; }
+
+        /* Interactive animations */
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #c41e3a; }
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid #c41e3a;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+            20%, 40%, 60%, 80% { transform: translateX(10px); }
+        }
+
+        .shake { animation: shake 0.5s ease-in-out; }
+
+        .fact-box:hover {
+            transform: translateY(-6px) rotateY(5deg);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+        }
+
+        .timeline-item {
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            background: rgba(196,30,58,0.1);
+        }
+
+        .timeline-details {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #1a1a1a;
+            border-left: 4px solid #c41e3a;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(196,30,58,0.6);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        .references a {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #c41e3a;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
         .stat-label {
             color: #999;
             font-size: 1rem;
@@ -492,30 +637,33 @@
 
     <!-- PAGE 1: INTRODUCTION -->
     <div id="page1" class="page active">
-        <div class="hero">
-            <h1>Harold Frederick Shipman</h1>
+        <div class="hero animate-on-scroll fade-in-up">
+            <h1 class="typewriter">Harold Frederick Shipman</h1>
             <h2>A Forensic Study of Britain's Most Prolific Serial Killer</h2>
             <p class="byline">A Case Study by Hank H, James C, and Wyatt B</p>
         </div>
 
         <div class="container">
             <div class="stats-grid">
-                <div class="stat-card">
+                <div class="stat-card animate-on-scroll scale-in tooltip">
                     <span class="stat-number" data-target="250" data-suffix="+">0</span>
                     <span class="stat-label">Estimated Victims</span>
+                    <span class="tooltiptext">Conservative estimates place the number between 215 and 250 victims based on investigations.</span>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card animate-on-scroll scale-in tooltip">
                     <span class="stat-number" data-target="23">0</span>
                     <span class="stat-label">Years Active</span>
+                    <span class="tooltiptext">Shipman's killing spree spanned from approximately 1975 to 1998.</span>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card animate-on-scroll scale-in tooltip">
                     <span class="stat-number" data-target="15">0</span>
                     <span class="stat-label">Murder Convictions</span>
+                    <span class="tooltiptext">Convicted of 15 murders, though the total is believed to be much higher.</span>
                 </div>
             </div>
 
             <!-- Carousel: Quick facts / imagery -->
-            <div class="carousel" id="introCarousel" aria-label="Intro carousel">
+            <div class="carousel animate-on-scroll slide-in-left" id="introCarousel" aria-label="Intro carousel">
                 <div class="carousel-track">
                     <div class="carousel-slide">
                         <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='500'><rect width='100%' height='100%' fill='%23111111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23c41e3a' font-size='36'>Investigative Records</text></svg>" alt="Investigative Records">
@@ -528,7 +676,7 @@
                         <p>Shipman's case prompted reforms to drug monitoring and death certificate verification.</p>
                     </div>
                     <div class="carousel-slide">
-                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='500'><rect width='100%' height='100%' fill='%23111111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23c41e3a' font-size='36'>Victim Stories</text></svg>" alt="Victim Stories">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='500'><rect width='100%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23c41e3a' font-size='36'>Victim Stories</text></svg>" alt="Victim Stories">
                         <h3>Victim Stories</h3>
                         <p>Remembering victims centers the work: families and communities affected by loss.</p>
                     </div>
@@ -540,21 +688,21 @@
                 <div class="carousel-dots" role="tablist"></div>
             </div>
 
-            <div class="section">
+            <div class="section animate-on-scroll fade-in-up">
                 <h2>Documentary Investigation</h2>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/jrWoFs7LY7E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
 
-            <div class="section">
+            <div class="section animate-on-scroll fade-in-up">
                 <h2>The Importance of Studying Serial Offenders</h2>
                 
                 <p>The examination of serial killers serves a critical function in both criminal psychology and public safety. By analyzing the behaviors, patterns, and psychological profiles of these offenders, researchers and law enforcement gain valuable insights into the human capacity for deception and violence. Understanding how individuals like Harold Shipman operated allows society to identify warning signs before tragedies occur, implement preventative measures, and develop better screening protocols for positions of trust.</p>
 
                 <p>The Shipman case stands as a stark reminder that danger can emerge from the most trusted professions. As a physician, Shipman exploited the vulnerability of elderly patients who placed their lives in his hands. His decades-long killing spree went undetected precisely because of the authority and credibility his medical credentials afforded him. This case fundamentally challenged assumptions about who could become a serial killer and exposed critical gaps in medical oversight systems.</p>
 
-                <div class="pull-quote">
+                <div class="pull-quote animate-on-scroll bounce-in">
                     "The most dangerous predators are often those we trust the most."
                 </div>
 
@@ -571,14 +719,14 @@
         </div>
 
         <div class="container">
-            <div class="section">
+            <div class="section animate-on-scroll fade-in-up">
                 <h2>Childhood in Nottingham</h2>
                 
                 <p>Harold Frederick Shipman entered the world on January 14, 1946, in Nottingham, England, during the post-war recovery period. Raised in a middle-class household, he grew up in circumstances that appeared outwardly normal. His family maintained stability and respectability within their community, offering no obvious signs of the darkness that would later emerge.</p>
 
                 <p>From an early age, Shipman demonstrated exceptional intelligence and academic aptitude. However, his intellectual gifts came paired with significant social difficulties. He remained isolated from peers, struggling to form meaningful connections with classmates. Teachers noted his quiet demeanor and preference for solitude, traits that would persist throughout his life. While he excelled in structured academic environments, he seemed unable to navigate the social complexities of childhood and adolescence.</p>
 
-                <div class="fact-box">
+                <div class="fact-box animate-on-scroll slide-in-left">
                     <h4>Early Life Profile</h4>
                     <ul>
                         <li><strong>Born:</strong> January 14, 1946</li>
@@ -609,22 +757,26 @@
 
                 <p>Shipman established himself as a dedicated general practitioner who made house calls and saw patients in his office—practices that fostered deep trust within his community. Elderly patients, in particular, came to rely on him. He projected an image of competence and care, never arousing suspicion even as death rates among his patients began to climb. His medical credentials became the perfect cover for murder, providing both means and opportunity while deflecting any potential scrutiny.</p>
 
-                <div class="timeline">
+                <div class="timeline animate-on-scroll slide-in-right">
                     <div class="timeline-item">
                         <div class="timeline-date">1946</div>
                         <div>Born in Nottingham, England</div>
+                        <div class="timeline-details">Harold Frederick Shipman was born on January 14, 1946, in Nottingham. His early life showed academic promise but social difficulties.</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-date">1963</div>
                         <div>Mother dies of cancer; Shipman witnesses morphine administration</div>
+                        <div class="timeline-details">His mother's death from cancer exposed him to morphine, which may have influenced his later methods.</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-date">1970</div>
                         <div>Graduates from Leeds School of Medicine</div>
+                        <div class="timeline-details">Graduation marked his entry into the medical profession, granting him the trust and access he would abuse.</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-date">1975</div>
                         <div>Begins general practice; killing likely begins</div>
+                        <div class="timeline-details">Around this time, Shipman began his practice and likely started his murders, targeting vulnerable patients.</div>
                     </div>
                 </div>
             </div>
@@ -1054,6 +1206,65 @@
 
             animateCounters(1000);
             initCarousel('introCarousel', { interval: 3500 });
+
+            // Scroll animations
+            const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+            // Interactive elements
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const details = this.querySelector('.timeline-details');
+                    if (details) {
+                        details.style.display = details.style.display === 'block' ? 'none' : 'block';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.warning-box').forEach(box => {
+                box.addEventListener('mouseenter', () => {
+                    box.classList.add('shake');
+                });
+                box.addEventListener('animationend', () => {
+                    box.classList.remove('shake');
+                });
+            });
+
+            document.querySelectorAll('.references a').forEach(a => {
+                a.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+                    this.appendChild(ripple);
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+                    ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+                    setTimeout(() => ripple.remove(), 600);
+                });
+            });
+
+            // Keyboard navigation for carousel
+            document.addEventListener('keydown', (e) => {
+                const carousel = document.getElementById('introCarousel');
+                if (carousel && carousel.offsetParent !== null) {
+                    if (e.key === 'ArrowLeft') {
+                        const prev = carousel.querySelector('.carousel-prev');
+                        if (prev) prev.click();
+                    } else if (e.key === 'ArrowRight') {
+                        const next = carousel.querySelector('.carousel-next');
+                        if (next) next.click();
+                    }
+                }
+            });
         });
     </script>
 
